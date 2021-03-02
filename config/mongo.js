@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+// require("dotenv")
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect("mongodb://localhost/artistify", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

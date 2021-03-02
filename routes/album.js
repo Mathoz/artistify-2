@@ -18,6 +18,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+
 // GET - create one album (form)
 router.get("/create", async (req, res, next) => {
   const artists = await ArtistModel.find();
@@ -25,16 +26,12 @@ router.get("/create", async (req, res, next) => {
   res.render("dashboard/albumCreate", { artists, labels });
 });
 
-// GET - update one album (form)
-
-// GET - delete one album
-
 // POST - create one album
-router.post("/", uploader.single("cover"), async (req, res, next) => {
+router.post("/create", uploader.single("cover"), async (req, res, next) => {
   const newAlbum = { ...req.body };
   if (!req.file) newAlbum.cover = undefined;
   else newAlbum.cover = req.file.path;
-  console.log(newAlbum);
+  console.log(newAlbum, 'CREATE POST');
   try {
     await AlbumModel.create(newAlbum);
     res.redirect("/dashboard/album");
@@ -43,6 +40,27 @@ router.post("/", uploader.single("cover"), async (req, res, next) => {
   }
 });
 
+// GET - update one album (form)
+router.get("/update/:id", async (req, res, next) => {
+  try{
+    const artists = await ArtistModel.find();
+    const labels = await LabelModel.find();
+    const album = await AlbumModel.findById(req.params.id).populate("artist label");
+    res.render('./dashboard/albumUpdate', {album, artists, labels});
+  } catch(err) {next(err)};
+})
+
 // POST - update one album
+router.post("/update/:id", (req, res, next) => {
+  console.log(req.body);
+  res.send('work in progress update')
+})
+
+// GET - delete one album
+router.get("/delete/:id", (req, res, next) => {
+  AlbumModel.findByIdAndDelete(req.params.id)
+  .then(dbSuccess => {res.redirect("/dashboard/album");})
+  .catch(next);
+})
 
 module.exports = router;

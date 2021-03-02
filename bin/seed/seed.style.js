@@ -1,7 +1,7 @@
 // create a test data set of valid users
 require("dotenv").config();
-require("./../config/mongo"); // fetch the db connection
-const StyleModel = require("./../model/Style"); // fetch the model to validate our user document before insertion (in database)
+require("./../../config/mongo"); // fetch the db connection
+const StyleModel = require("./../../model/Style"); // fetch the model to validate our user document before insertion (in database)
 
 const styles = [
   {
