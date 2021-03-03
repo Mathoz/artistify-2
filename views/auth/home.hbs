@@ -1,0 +1,17 @@
+<h1>HOME AUTH PAGE</h1>
+
+
+<nav id="nav-main">
+    <a href="/">home</a>
+    <span>|</span>
+    {{#if currentUser}}
+    <a href="/dashboard/auth/profile">profile</a>
+    <span>|</span>
+    <a href="/dashboard/auth/signout">signout</a>
+    <span>|</span>
+    {{else}}
+    <a href="/dashboard/auth/signup">signup</a>
+    <span>|</span>
+    <a href="/dashboard/auth/signin">signin</a>
+    {{/if}}
+</nav>

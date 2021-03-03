@@ -1,0 +1,24 @@
+<h2>SIGN UP PAGE</h2>
+
+
+<form method="post" action="/dashboard/auth/signup">
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" value="random user">
+
+    <label for="email">Email</label>
+    <input id="email" type="text" name="email" value="user@gmail.com">
+
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" value="1234">
+
+    <label for="role">Role</label>
+    <select name="role" id="role">
+        <option value="admin">Admin</option>
+        <option selected value="user">User</option>
+    </select>
+
+    <label for="avatar">Avatar</label>
+    <input type="file" id="avatar" name="avatar">
+
+    <button>Create account</button>
+</form>
